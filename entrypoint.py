@@ -24,9 +24,7 @@ with open(issue_content_path, 'r') as f:
 
 # Fetch the repository object
 g = Github(github_token)
-# Split username/repository
-github_repository_parts = [l.strip() for l in github_repository.split('/')]
-repo = g.get_user().get_repo(github_repository_parts[1])
+repo = g.get_repo(github_repository)
 # Create the issue
 issue = repo.create_issue(issue_title, issue_content)
 print("Created issue %d" % (issue.number))
