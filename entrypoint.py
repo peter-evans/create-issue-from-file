@@ -1,7 +1,7 @@
 '''Create Issue From File'''
-from github import Github
-from pathlib import Path
 import os
+from pathlib import Path
+from github import Github
 
 # Fetch required environment variables
 github_token = os.environ['GITHUB_TOKEN']
