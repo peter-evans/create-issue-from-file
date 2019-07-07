@@ -1,7 +1,6 @@
 '''Create Issue From File'''
 from github import Github
 from pathlib import Path
-import random
 import os
 
 # Fetch required environment variables
