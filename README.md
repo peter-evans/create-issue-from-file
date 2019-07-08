@@ -9,7 +9,7 @@ This is useful to pair with other actions that output to a file. This action wil
 
 ```hcl
 action "Create Issue From File" {
-  uses = "peter-evans/create-issue-from-file@v1.0.0"
+  uses = "peter-evans/create-issue-from-file@v1.0.1"
   secrets = ["GITHUB_TOKEN"]
   env = {
     ISSUE_TITLE = "An example issue"
