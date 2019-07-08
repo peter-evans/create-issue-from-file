@@ -15,4 +15,4 @@ COPY requirements.txt /tmp/
 RUN pip install --requirement /tmp/requirements.txt
 
 COPY entrypoint.py /entrypoint.py
-ENTRYPOINT [ "python", "./entrypoint.py" ]
+ENTRYPOINT [ "python", "/entrypoint.py" ]
