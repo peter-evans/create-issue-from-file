@@ -3,7 +3,7 @@
 
 A GitHub action to create an issue using content from a file.
 
-This is useful to pair with other actions that output to a file.
+This is designed to be used in conjunction with other actions that output to a file.
 Especially if that output can be formatted as [GitHub flavoured Markdown](https://help.github.com/en/articles/basic-writing-and-formatting-syntax).
 This action will create an issue if a file exists at a specified path.
 The content of the issue will be taken from the file as-is.
