@@ -1,4 +1,5 @@
-'''Create Issue From File'''
+#!/usr/bin/env python3
+''' Create Issue From File '''
 import os
 from pathlib import Path
 from github import Github

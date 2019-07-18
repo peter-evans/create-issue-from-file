@@ -14,5 +14,5 @@ COPY LICENSE README.md /
 COPY requirements.txt /tmp/
 RUN pip install --requirement /tmp/requirements.txt
 
-COPY entrypoint.py /entrypoint.py
-ENTRYPOINT [ "python", "/entrypoint.py" ]
+COPY create-issue-from-file.py /create-issue-from-file.py
+ENTRYPOINT [ "/create-issue-from-file.py" ]
