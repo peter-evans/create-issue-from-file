@@ -1,9 +1,15 @@
 workflow "Create an issue" {
   resolves = ["Create Issue From File"]
-  on = "schedule(0 0 1 1/6 *)"
+  on = "push"
+}
+
+action "Filter test branch" {
+  uses = "actions/bin/filter@master"
+  args = "branch test"
 }
 
 action "Create Issue From File" {
+  needs = "Filter test branch"
   uses = "./"
   secrets = ["GITHUB_TOKEN"]
   env = {
