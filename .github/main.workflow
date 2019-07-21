@@ -3,7 +3,12 @@ workflow "Create an issue" {
   on = "issue_comment"
 }
 
+action "Event data" {
+  uses = "ludeeus/action-eventdata@master"
+}
+
 action "test command" {
+  needs = "Event data"
   uses = "dschep/filter-event-action@master"
   args = "comment.body == '/test'"
 }
