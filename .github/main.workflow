@@ -1,20 +1,15 @@
 workflow "Create an issue" {
   resolves = ["Create Issue From File"]
-  on = "issue_comment"
+  on = "push"
 }
 
-action "Event data" {
-  uses = "ludeeus/action-eventdata@master"
-}
-
-action "test command" {
-  needs = "Event data"
-  uses = "dschep/filter-event-action@master"
-  args = "comment.body == '/test'"
+action "Filter test branch" {
+  uses = "actions/bin/filter@master"
+  args = "branch test"
 }
 
 action "Create Issue From File" {
-  needs = "test command"
+  needs = "Filter test branch"
   uses = "./"
   secrets = ["GITHUB_TOKEN"]
   env = {
