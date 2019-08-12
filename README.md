@@ -11,16 +11,14 @@ If the file does not exist the action exits silently.
 
 ## Usage
 
-```hcl
-action "Create Issue From File" {
-  uses = "peter-evans/create-issue-from-file@v1.0.1"
-  secrets = ["GITHUB_TOKEN"]
-  env = {
-    ISSUE_TITLE = "An example issue"
-    ISSUE_CONTENT_FILEPATH = "./example-content/output.md"
-    ISSUE_LABELS = "report, automated issue"
-  }
-}
+```yml
+    - name: Create Issue From File
+      uses: peter-evans/create-issue-from-file@v1.0.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        ISSUE_TITLE: An example issue
+        ISSUE_CONTENT_FILEPATH: ./example-content/output.md
+        ISSUE_LABELS: report, automated issue
 ```
 
 #### Environment variables
