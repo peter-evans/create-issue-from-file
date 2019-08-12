@@ -3,7 +3,6 @@ on:
   push:
     branches:
     - test
-
 jobs:
   createIssueFromFile:
     runs-on: ubuntu-latest
