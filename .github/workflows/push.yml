@@ -1,0 +1,19 @@
+on: push
+name: Create an issue
+jobs:
+  createIssueFromFile:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Filter test branch
+      uses: actions/bin/filter@master
+      with:
+        args: branch test
+    - name: Create Issue From File
+      uses: ./
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        ISSUE_TITLE: An example issue
+        ISSUE_CONTENT_FILEPATH: ./example-content/output.md
+        ISSUE_LABELS: report, automated issue
+        ISSUE_ASSIGNEES: peter-evans
