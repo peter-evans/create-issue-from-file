@@ -1,14 +1,14 @@
-on: push
 name: Create an issue
+on:
+  push:
+    branches:
+    - test
+
 jobs:
   createIssueFromFile:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: Filter test branch
-      uses: actions/bin/filter@master
-      with:
-        args: branch test
     - name: Create Issue From File
       uses: ./
       env:
