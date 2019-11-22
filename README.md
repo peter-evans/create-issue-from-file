@@ -7,6 +7,7 @@ This is designed to be used in conjunction with other actions that output to a f
 Especially if that output can be formatted as [GitHub flavoured Markdown](https://help.github.com/en/articles/basic-writing-and-formatting-syntax).
 This action will create an issue if a file exists at a specified path.
 The content of the issue will be taken from the file as-is.
+If project variables are specified, a card will be added to a project.
 If the file does not exist the action exits silently.
 
 ## Usage
@@ -19,6 +20,8 @@ If the file does not exist the action exits silently.
         ISSUE_TITLE: An example issue
         ISSUE_CONTENT_FILEPATH: ./example-content/output.md
         ISSUE_LABELS: report, automated issue
+        PROJECT_NAME: Example Project
+        PROJECT_COLUMN_NAME: To do
 ```
 
 #### Environment variables
@@ -27,6 +30,8 @@ If the file does not exist the action exits silently.
 - `ISSUE_CONTENT_FILEPATH` (**required**) - The file path to the issue content
 - `ISSUE_LABELS` - A comma separated list of labels to apply
 - `ISSUE_ASSIGNEES` - A comma separated list of assignees (GitHub usernames)
+- `PROJECT_NAME` - The name of a project to add a project card to (Requires `PROJECT_COLUMN_NAME`)
+- `PROJECT_COLUMN_NAME` - The name of the project column to add the card to
 
 ## Actions that pair with this action
 
