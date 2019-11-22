@@ -13,6 +13,8 @@ issue_content_path = os.environ['ISSUE_CONTENT_FILEPATH']
 # Fetch optional environment variables
 issue_labels = os.environ.get('ISSUE_LABELS')
 issue_assignees = os.environ.get('ISSUE_ASSIGNEES')
+project_name = os.environ.get('PROJECT_NAME')
+project_column_name = os.environ.get('PROJECT_COLUMN_NAME')
 
 # If the file does not exist there is no issue to create
 if not Path(issue_content_path).is_file():
@@ -47,3 +49,31 @@ if issue_assignees is not None:
     # Assign issue
     print("Assigning issue to assignees")
     issue.edit(assignees=assignees_list)
+
+if project_name is not None and project_column_name is not None:
+    # Locate the project by name
+    project = None
+    for project_item in repo.get_projects("all"):
+        if project_item.name == project_name:
+            project = project_item
+            break
+
+    if not project:
+        print("Project not found")
+        exit(0)
+
+    # Locate the column by name
+    column = None
+    for column_item in project.get_columns():
+        if column_item.name == project_column_name:
+            column = column_item
+            break
+
+    if not column:
+        print("Project column not found")
+        exit(0)
+
+    # Add the issue to the project
+    card = column.create_card(content_id=issue.id, content_type="Issue")
+    print("Added issue %d to project \"%s\" under column \"%s\"" \
+        % (issue.number, project.name, column.name))
