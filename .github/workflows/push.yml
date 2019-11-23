@@ -16,3 +16,5 @@ jobs:
         ISSUE_CONTENT_FILEPATH: ./example-content/output.md
         ISSUE_LABELS: report, automated issue
         ISSUE_ASSIGNEES: peter-evans
+        PROJECT_NAME: Example Project
+        PROJECT_COLUMN_NAME: To do
