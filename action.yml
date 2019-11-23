@@ -1,0 +1,8 @@
+name: 'Create Issue From File'
+description: 'An action to create an issue using content from a file'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+branding:
+  icon: 'alert-circle'  
+  color: 'orange'
