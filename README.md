@@ -14,7 +14,7 @@ If the file does not exist the action exits silently.
 
 ```yml
     - name: Create Issue From File
-      uses: peter-evans/create-issue-from-file@v1.1.0
+      uses: peter-evans/create-issue-from-file@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         ISSUE_TITLE: An example issue
