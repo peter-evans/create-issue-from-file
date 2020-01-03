@@ -14,24 +14,24 @@ If the file does not exist the action exits silently.
 
 ```yml
     - name: Create Issue From File
-      uses: peter-evans/create-issue-from-file@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        ISSUE_TITLE: An example issue
-        ISSUE_CONTENT_FILEPATH: ./example-content/output.md
-        ISSUE_LABELS: report, automated issue
-        PROJECT_NAME: Example Project
-        PROJECT_COLUMN_NAME: To do
+      uses: peter-evans/create-issue-from-file@v2
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        title: An example issue
+        content-filepath: ./example-content/output.md
+        labels: report, automated issue
+        project: Example Project
+        project-column: To do
 ```
 
-#### Environment variables
+#### Inputs
 
-- `ISSUE_TITLE` (**required**) - A title for the issue
-- `ISSUE_CONTENT_FILEPATH` (**required**) - The file path to the issue content
-- `ISSUE_LABELS` - A comma separated list of labels to apply
-- `ISSUE_ASSIGNEES` - A comma separated list of assignees (GitHub usernames)
-- `PROJECT_NAME` - The name of a project to add a project card to (Requires `PROJECT_COLUMN_NAME`)
-- `PROJECT_COLUMN_NAME` - The name of the project column to add the card to
+- `title` (**required**) - The title of the issue
+- `content-filepath` (**required**) - The file path to the issue content
+- `labels` - A comma separated list of labels
+- `assignees` - A comma separated list of assignees (GitHub usernames)
+- `project` - The name of the project for which a card should be created (Requires `project-column-name`)
+- `project-column` - The name of the project column under which a card should be created
 
 ## Actions that pair with this action
 

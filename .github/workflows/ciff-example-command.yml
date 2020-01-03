@@ -1,0 +1,26 @@
+name: Create Issue From File Example Command
+on:
+  repository_dispatch:
+    types: [ciff-example-command]
+jobs:
+  createPullRequest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Create Issue From File
+        uses: ./
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          title: An example issue
+          content-filepath: ./example-content/output.md
+          labels: report, automated issue
+          assignees: peter-evans
+          project: Example Project
+          project-column: To do
+      - name: Add reaction
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.event.client_payload.github.payload.repository.full_name }}
+          comment-id: ${{ github.event.client_payload.github.payload.comment.id }}
+          reaction-type: hooray

@@ -7,14 +7,14 @@ from github import Github
 # Fetch required environment variables
 github_token = os.environ['GITHUB_TOKEN']
 github_repository = os.environ['GITHUB_REPOSITORY']
-issue_title = os.environ['ISSUE_TITLE']
-issue_content_path = os.environ['ISSUE_CONTENT_FILEPATH']
+issue_title = os.environ['CIFF_TITLE']
+issue_content_path = os.environ['CIFF_CONTENT_FILEPATH']
 
 # Fetch optional environment variables
-issue_labels = os.environ.get('ISSUE_LABELS')
-issue_assignees = os.environ.get('ISSUE_ASSIGNEES')
-project_name = os.environ.get('PROJECT_NAME')
-project_column_name = os.environ.get('PROJECT_COLUMN_NAME')
+issue_labels = os.environ.get('CIFF_LABELS')
+issue_assignees = os.environ.get('CIFF_ASSIGNEES')
+project_name = os.environ.get('CIFF_PROJECT_NAME')
+project_column_name = os.environ.get('CIFF_PROJECT_COLUMN_NAME')
 
 # If the file does not exist there is no issue to create
 if not Path(issue_content_path).is_file():

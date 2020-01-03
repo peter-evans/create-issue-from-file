@@ -1,8 +1,25 @@
 name: 'Create Issue From File'
 description: 'An action to create an issue using content from a file'
+inputs:
+  token:
+    description: 'The GitHub authentication token'
+    required: true
+  title:
+    description: 'The title of the issue.'
+    required: true
+  content-filepath:
+    description: 'The file path to the issue content.'
+  labels:
+    description: 'A comma separated list of labels.'
+  assignees:
+    description: 'A comma separated list of assignees (GitHub usernames).'
+  project:
+    description: 'The name of the project for which a card should be created.'
+  project-column:
+    description: 'The name of the project column under which a card should be created.'
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: 'node12'
+  main: 'dist/index.js'
 branding:
   icon: 'alert-circle'  
   color: 'orange'
