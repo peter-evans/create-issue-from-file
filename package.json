@@ -1,0 +1,28 @@
+{
+  "name": "create-issue-from-file",
+  "version": "2.0.0",
+  "description": "An action to create an issue using content from a file",
+  "main": "index.js",
+  "scripts": {
+    "package": "ncc build index.js -o dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/peter-evans/create-issue-from-file.git"
+  },
+  "keywords": [],
+  "author": "Peter Evans",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/peter-evans/create-issue-from-file/issues"
+  },
+  "homepage": "https://github.com/peter-evans/create-issue-from-file",
+  "dependencies": {
+    "@actions/core": "^1.1.1",
+    "@actions/exec": "^1.0.1",
+    "@actions/tool-cache": "^1.1.2"
+  },
+  "devDependencies": {
+    "@zeit/ncc": "0.20.5"
+  }
+}
