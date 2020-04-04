@@ -3,7 +3,7 @@ description: 'An action to create an issue using content from a file'
 inputs:
   token:
     description: 'The GitHub authentication token'
-    required: true
+    default: ${{ github.token }}
   title:
     description: 'The title of the issue.'
     required: true

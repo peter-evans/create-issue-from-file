@@ -10,7 +10,6 @@ jobs:
       - name: Create Issue From File
         uses: ./
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
           title: An example issue
           content-filepath: ./example-content/output.md
           labels: report, automated issue
@@ -20,7 +19,6 @@ jobs:
       - name: Add reaction
         uses: peter-evans/create-or-update-comment@v1
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
           repository: ${{ github.event.client_payload.github.payload.repository.full_name }}
           comment-id: ${{ github.event.client_payload.github.payload.comment.id }}
           reaction-type: hooray

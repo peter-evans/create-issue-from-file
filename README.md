@@ -16,7 +16,6 @@ If the file does not exist the action exits silently.
     - name: Create Issue From File
       uses: peter-evans/create-issue-from-file@v2
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
         title: An example issue
         content-filepath: ./example-content/output.md
         labels: report, automated issue
@@ -26,6 +25,7 @@ If the file does not exist the action exits silently.
 
 #### Inputs
 
+- `token` - `GITHUB_TOKEN` or a `repo` scoped [PAT](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line). Defaults to `GITHUB_TOKEN`.
 - `title` (**required**) - The title of the issue
 - `content-filepath` (**required**) - The file path to the issue content
 - `labels` - A comma separated list of labels
