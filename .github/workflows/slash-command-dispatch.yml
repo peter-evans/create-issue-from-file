@@ -13,3 +13,4 @@ jobs:
           reaction-token: ${{ secrets.GITHUB_TOKEN }}
           commands: ciff-example
           permission: admin
+          named-args: true

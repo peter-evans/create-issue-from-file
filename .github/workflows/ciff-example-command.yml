@@ -3,7 +3,7 @@ on:
   repository_dispatch:
     types: [ciff-example-command]
 jobs:
-  createPullRequest:
+  createIssueFromFile:
     runs-on: ubuntu-latest
     steps:
       # Get the target repository and branch
