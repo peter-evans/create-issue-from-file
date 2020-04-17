@@ -26,12 +26,17 @@ If the file does not exist the action exits silently.
 #### Inputs
 
 - `token` - `GITHUB_TOKEN` or a `repo` scoped [PAT](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line). Defaults to `GITHUB_TOKEN`.
+- `issue-number` - The issue number of an existing issue to update
 - `title` (**required**) - The title of the issue
 - `content-filepath` (**required**) - The file path to the issue content
 - `labels` - A comma separated list of labels
 - `assignees` - A comma separated list of assignees (GitHub usernames)
 - `project` - The name of the project for which a card should be created (Requires `project-column-name`)
 - `project-column` - The name of the project column under which a card should be created
+
+#### Outputs
+
+- `issue-number` - The number of the created issue
 
 ## Actions that pair with this action
 
