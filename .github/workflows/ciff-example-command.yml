@@ -6,8 +6,26 @@ jobs:
   createPullRequest:
     runs-on: ubuntu-latest
     steps:
+      # Get the target repository and branch
+      - name: Get the target repository and branch
+        id: vars
+        run: |
+          repository=${{ github.event.client_payload.slash_command.repository }}
+          if [[ -z "$repository" ]]; then repository=${{ github.repository }}; fi
+          echo ::set-output name=repository::$repository
+          branch=${{ github.event.client_payload.slash_command.branch }}
+          if [[ -z "$branch" ]]; then branch="master"; fi
+          echo ::set-output name=branch::$branch
+
+      # Checkout the branch to test
       - uses: actions/checkout@v2
+        with:
+          repository: ${{ steps.vars.outputs.repository }}
+          ref: ${{ steps.vars.outputs.branch }}
+
+      # Test create
       - name: Create Issue From File
+        id: ciff
         uses: ./
         with:
           title: An example issue
@@ -16,6 +34,19 @@ jobs:
           assignees: peter-evans
           project: Example Project
           project-column: To do
+
+      # Test update
+      - name: Create Issue From File
+        uses: ./
+        with:
+          issue-number: ${{ steps.ciff.outputs.issue-number }}
+          title: An example issue
+          content-filepath: ./example-content/output.md
+          labels: report, automated issue
+          assignees: peter-evans
+          project: Example Project
+          project-column: To do
+
       - name: Add reaction
         uses: peter-evans/create-or-update-comment@v1
         with:
