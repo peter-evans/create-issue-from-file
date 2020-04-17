@@ -4,6 +4,8 @@ inputs:
   token:
     description: 'The GitHub authentication token'
     default: ${{ github.token }}
+  issue-number:
+    description: 'The issue number of an existing issue to update'
   title:
     description: 'The title of the issue.'
     required: true
@@ -17,6 +19,9 @@ inputs:
     description: 'The name of the project for which a card should be created.'
   project-column:
     description: 'The name of the project column under which a card should be created.'
+outputs:
+  issue-number:
+    description: 'The number of the created issue.'
 runs:
   using: 'node12'
   main: 'dist/index.js'
