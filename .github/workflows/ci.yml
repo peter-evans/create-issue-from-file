@@ -63,7 +63,7 @@ jobs:
       - name: Close Issue
         uses: ./.github/close-issue
         with:
-          issue-number: ${{ steps.cpr.outputs.pr_number }}
+          issue-number: ${{ steps.ciff.outputs.issue-number }}
           comment: '[CI] test ${{ matrix.target }}'
 
   package:
