@@ -1,0 +1,20 @@
+name: 'Close Issue'
+description: 'A GitHub action to close an issue'
+inputs:
+  token:
+    description: 'GitHub auth token'
+    default: ${{ github.token }}
+  repository:
+    description: 'The GitHub repository containing the issue'
+    default: ${{ github.repository }}
+  issue-number:
+    description: 'The number of the issue to close'
+    default: ${{ github.event.number }}
+  comment:
+    description: 'A comment to make on the issue before closing'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
+branding:
+  icon: 'slash'
+  color: 'gray-dark'
