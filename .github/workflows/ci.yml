@@ -61,7 +61,7 @@ jobs:
           project-column: To do
 
       - name: Close Issue
-        uses: ./.github/close-issue
+        uses: peter-evans/close-issue@v1
         with:
           issue-number: ${{ steps.ciff.outputs.issue-number }}
           comment: '[CI] test ${{ matrix.target }}'
