@@ -2,14 +2,8 @@
   "extends": [
     "config:base"
   ],
-  "packageRules": [
-    {
-      "depTypeList": ["devDependencies"],
-      "automerge": true
-    }
-  ],
+  "enabledManagers": ["pip_requirements"],
   "ignorePaths": [
-    "**/dist/**",
-    "**/.github/**"
+    "**/dist/**"
   ]
 }
