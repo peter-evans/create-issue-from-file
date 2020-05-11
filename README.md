@@ -8,23 +8,20 @@ This is designed to be used in conjunction with other actions that output to a f
 Especially if that output can be formatted as [GitHub flavoured Markdown](https://help.github.com/en/articles/basic-writing-and-formatting-syntax).
 This action will create an issue if a file exists at a specified path.
 The content of the issue will be taken from the file as-is.
-If project variables are specified, a card will be added to a project.
 If the file does not exist the action exits silently.
 
 ## Usage
 
 ```yml
-    - name: Create Issue From File
-      uses: peter-evans/create-issue-from-file@v2
-      with:
-        title: An example issue
-        content-filepath: ./example-content/output.md
-        labels: report, automated issue
-        project: Example Project
-        project-column: To do
+      - name: Create Issue From File
+        uses: peter-evans/create-issue-from-file@v2
+        with:
+          title: An example issue
+          content-filepath: ./example-content/output.md
+          labels: report, automated issue
 ```
 
-#### Inputs
+### Inputs
 
 - `token` - `GITHUB_TOKEN` or a `repo` scoped [PAT](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line). Defaults to `GITHUB_TOKEN`.
 - `issue-number` - The issue number of an existing issue to update
@@ -32,12 +29,32 @@ If the file does not exist the action exits silently.
 - `content-filepath` (**required**) - The file path to the issue content
 - `labels` - A comma separated list of labels
 - `assignees` - A comma separated list of assignees (GitHub usernames)
-- `project` - The name of the project for which a card should be created (Requires `project-column-name`)
-- `project-column` - The name of the project column under which a card should be created
+- `project` - *Deprecated*. See [Create a project card](#create-a-project-card) for details.
+- `project-column` - *Deprecated*. See [Create a project card](#create-a-project-card) for details.
 
-#### Outputs
+### Outputs
 
 - `issue-number` - The number of the created issue
+
+### Create a project card
+
+To create a project card for the issue, pass the `issue-number` step output to [create-or-update-project-card](https://github.com/peter-evans/create-or-update-project-card) action.
+
+```yml
+      - name: Create Issue From File
+        id: ciff
+        uses: peter-evans/create-issue-from-file@v2
+        with:
+          title: An example issue
+          content-filepath: ./example-content/output.md
+
+      - name: Create or Update Project Card
+        uses: peter-evans/create-or-update-project-card@v1
+        with:
+          project-name: My project
+          column-name: My column
+          issue-number: ${{ steps.ciff.outputs.issue-number }}
+```
 
 ## Actions that pair with this action
 

@@ -16,9 +16,9 @@ inputs:
   assignees:
     description: 'A comma separated list of assignees (GitHub usernames).'
   project:
-    description: 'The name of the project for which a card should be created.'
+    description: 'Deprecated. See README for details.'
   project-column:
-    description: 'The name of the project column under which a card should be created.'
+    description: 'Deprecated. See README for details.'
 outputs:
   issue-number:
     description: 'The number of the created issue.'

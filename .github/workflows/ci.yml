@@ -52,8 +52,6 @@ jobs:
           content-filepath: ./example-content/output.md
           labels: report, automated issue
           assignees: peter-evans
-          project: Example Project
-          project-column: To do
 
       - name: Test update issue from file
         uses: ./
@@ -63,8 +61,6 @@ jobs:
           content-filepath: ./example-content/output.md
           labels: report, automated issue
           assignees: peter-evans
-          project: Example Project
-          project-column: To do
 
       - name: Close Issue
         uses: peter-evans/close-issue@v1

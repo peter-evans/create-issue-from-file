@@ -32,8 +32,6 @@ jobs:
           content-filepath: ./example-content/output.md
           labels: report, automated issue
           assignees: peter-evans
-          project: Example Project
-          project-column: To do
 
       # Test update
       - name: Create Issue From File
@@ -44,8 +42,6 @@ jobs:
           content-filepath: ./example-content/output.md
           labels: report, automated issue
           assignees: peter-evans
-          project: Example Project
-          project-column: To do
 
       - name: Add reaction
         uses: peter-evans/create-or-update-comment@v1
