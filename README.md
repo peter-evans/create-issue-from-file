@@ -5,7 +5,7 @@
 A GitHub action to create an issue using content from a file.
 
 This is designed to be used in conjunction with other actions that output to a file.
-Especially if that output can be formatted as [GitHub flavoured Markdown](https://help.github.com/en/articles/basic-writing-and-formatting-syntax).
+Especially if that output can be formatted as [GitHub flavoured Markdown](https://docs.github.com/en/github/writing-on-github/basic-writing-and-formatting-syntax).
 This action will create an issue if a file exists at a specified path.
 The content of the issue will be taken from the file as-is.
 If the file does not exist the action exits silently.
@@ -23,7 +23,7 @@ If the file does not exist the action exits silently.
 
 ### Inputs
 
-- `token` - `GITHUB_TOKEN` or a `repo` scoped [PAT](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line). Defaults to `GITHUB_TOKEN`.
+- `token` - `GITHUB_TOKEN` or a `repo` scoped [PAT](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token). Defaults to `GITHUB_TOKEN`.
 - `issue-number` - The issue number of an existing issue to update
 - `title` (**required**) - The title of the issue
 - `content-filepath` (**required**) - The file path to the issue content
