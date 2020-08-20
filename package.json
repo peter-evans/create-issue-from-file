@@ -25,12 +25,12 @@
   "dependencies": {
     "@actions/core": "1.2.4",
     "@actions/exec": "1.0.4",
-    "@actions/tool-cache": "1.5.5",
-    "is-docker": "2.0.0"
+    "@actions/tool-cache": "1.6.0",
+    "is-docker": "2.1.1"
   },
   "devDependencies": {
     "@zeit/ncc": "0.22.3",
-    "eslint": "7.4.0",
-    "jest": "26.1.0"
+    "eslint": "7.7.0",
+    "jest": "26.4.0"
   }
 }
