@@ -30,7 +30,9 @@ jobs:
         with:
           title: An example issue
           content-filepath: ./example-content/output.md
-          labels: report, automated issue
+          labels: |
+            report
+            automated issue
           assignees: peter-evans
 
       # Test update
@@ -40,7 +42,9 @@ jobs:
           issue-number: ${{ steps.ciff.outputs.issue-number }}
           title: An example issue
           content-filepath: ./example-content/output.md
-          labels: report, automated issue
+          labels: |
+            report
+            automated issue
           assignees: peter-evans
 
       - name: Add reaction

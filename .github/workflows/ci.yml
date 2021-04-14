@@ -22,9 +22,10 @@ jobs:
         with:
           python-version: '3.x'
       - run: npm ci
-      - run: npm run clean
+      - run: npm run build
+      - run: npm run format-check
+      - run: npm run lint
       - run: npm run test
-      - run: npm run package
       - uses: actions/upload-artifact@v2
         with:
           name: dist
@@ -60,7 +61,9 @@ jobs:
         with:
           title: '[CI] test ${{ matrix.target }}'
           content-filepath: ./example-content/output.md
-          labels: report, automated issue
+          labels: |
+            report
+            automated issue
           assignees: peter-evans
 
       - name: Test update issue from file
@@ -69,7 +72,9 @@ jobs:
           issue-number: ${{ steps.ciff.outputs.issue-number }}
           title: '[CI] test ${{ matrix.target }}'
           content-filepath: ./example-content/output.md
-          labels: report, automated issue
+          labels: |
+            report
+            automated issue
           assignees: peter-evans
 
       - name: Close Issue
