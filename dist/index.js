@@ -112,6 +112,9 @@ function run() {
                 // Set output
                 core.setOutput('issue-number', issueNumber);
             }
+            else {
+                core.info(`File not found at path '${inputs.contentFilepath}'`);
+            }
         }
         catch (error) {
             core.debug(util_1.inspect(error));
