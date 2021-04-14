@@ -4,27 +4,26 @@ inputs:
   token:
     description: 'The GitHub authentication token'
     default: ${{ github.token }}
+  repository:
+    description: 'The target GitHub repository'
+    default: ${{ github.repository }}
   issue-number:
     description: 'The issue number of an existing issue to update'
   title:
-    description: 'The title of the issue.'
+    description: 'The title of the issue'
     required: true
   content-filepath:
-    description: 'The file path to the issue content.'
+    description: 'The file path to the issue content'
   labels:
-    description: 'A comma separated list of labels.'
+    description: 'A comma or newline-separated list of labels'
   assignees:
-    description: 'A comma separated list of assignees (GitHub usernames).'
-  project:
-    description: 'Deprecated. See README for details.'
-  project-column:
-    description: 'Deprecated. See README for details.'
+    description: 'A comma or newline-separated list of assignees (GitHub usernames)'
 outputs:
   issue-number:
-    description: 'The number of the created issue.'
+    description: 'The number of the created issue'
 runs:
   using: 'node12'
   main: 'dist/index.js'
 branding:
-  icon: 'alert-circle'  
+  icon: 'alert-circle'
   color: 'orange'

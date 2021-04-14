@@ -14,23 +14,26 @@ If the file does not exist the action exits silently.
 
 ```yml
       - name: Create Issue From File
-        uses: peter-evans/create-issue-from-file@v2
+        uses: peter-evans/create-issue-from-file@v3
         with:
           title: An example issue
           content-filepath: ./example-content/output.md
-          labels: report, automated issue
+          labels: |
+            report
+            automated issue
 ```
 
-### Inputs
+### Action inputs
 
-- `token` - `GITHUB_TOKEN` or a `repo` scoped [PAT](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token). Defaults to `GITHUB_TOKEN`.
-- `issue-number` - The issue number of an existing issue to update
-- `title` (**required**) - The title of the issue
-- `content-filepath` (**required**) - The file path to the issue content
-- `labels` - A comma separated list of labels
-- `assignees` - A comma separated list of assignees (GitHub usernames)
-- `project` - *Deprecated*. See [Create a project card](#create-a-project-card) for details.
-- `project-column` - *Deprecated*. See [Create a project card](#create-a-project-card) for details.
+| Name | Description | Default |
+| --- | --- | --- |
+| `token` | `GITHUB_TOKEN` or a `repo` scoped [PAT](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token). | `GITHUB_TOKEN` |
+| `repository` | The target GitHub repository. | Current repository |
+| `issue-number` | The issue number of an existing issue to update. | |
+| `title` | (**required**) The title of the issue. | |
+| `content-filepath` | The file path to the issue content. | |
+| `labels` | A comma or newline-separated list of labels. | |
+| `assignees` | A comma or newline-separated list of assignees (GitHub usernames). | |
 
 ### Outputs
 
