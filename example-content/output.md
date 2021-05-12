@@ -1,6 +1,6 @@
 # title
 
-An example issue created using content from [example-content/output.md](https://github.com/peter-evans/create-issue-from-file/blob/master/example-content/output.md)
+An example issue created using content from [example-content/output.md](https://github.com/peter-evans/create-issue-from-file/blob/main/example-content/output.md)
 
 ## subtitle
 
