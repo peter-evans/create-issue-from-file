@@ -14,7 +14,8 @@ async function run(): Promise<void> {
       title: core.getInput('title'),
       contentFilepath: core.getInput('content-filepath'),
       labels: utils.getInputAsArray('labels'),
-      assignees: utils.getInputAsArray('assignees')
+      assignees: utils.getInputAsArray('assignees'),
+      updateExisting: core.getBooleanInput('update-existing')
     }
     core.debug(`Inputs: ${inspect(inputs)}`)
 
@@ -43,15 +44,49 @@ async function run(): Promise<void> {
           core.info(`Updated issue #${inputs.issueNumber}`)
           return inputs.issueNumber
         } else {
-          // Create an issue
-          const {data: issue} = await octokit.rest.issues.create({
-            owner: owner,
-            repo: repo,
-            title: inputs.title,
-            body: fileContent
-          })
-          core.info(`Created issue #${issue.number}`)
-          return issue.number
+          // Check if issue with same title exists
+          let existingIssue
+          if (inputs.updateExisting) {
+            core.info(`Fetching issues with title "${inputs.title}"`)
+            try {
+              const existingIssues = await octokit.rest.search.issuesAndPullRequests({
+                q: `${inputs.title} in:title repo:${inputs.repository} is:issue is:open`
+              })
+              existingIssue = existingIssues.data.items.find(issue => issue.title === inputs.title)
+            } catch (err) {
+              core.error("Failed to search issues")
+              core.setFailed(err)
+            }
+            if (existingIssue) {
+              try {
+                await octokit.rest.issues.update({
+                  owner,
+                  repo,
+                  issue_number: existingIssue.number,
+                  body: fileContent
+                })
+                core.info(`Updated issue #${existingIssue.number}`)
+              } catch (err) {
+                core.error("Failed to update issue #" + existingIssue.number)
+                core.setFailed(err)
+              }
+            } else {
+              core.info(`Existing issue of title ${inputs.title} not found`)
+            }
+          }
+
+          if (!existingIssue || !inputs.updateExisting) {
+            const {data: issue} = await octokit.rest.issues.create({
+              owner: owner,
+              repo: repo,
+              title: inputs.title,
+              body: fileContent
+            })
+            core.info(`Created issue #${issue.number}`)
+            return issue.number
+          } else {
+            return existingIssue.number
+          }
         }
       })()
 

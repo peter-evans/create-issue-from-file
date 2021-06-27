@@ -51,7 +51,8 @@ function run() {
                 title: core.getInput('title'),
                 contentFilepath: core.getInput('content-filepath'),
                 labels: utils.getInputAsArray('labels'),
-                assignees: utils.getInputAsArray('assignees')
+                assignees: utils.getInputAsArray('assignees'),
+                updateExisting: core.getBooleanInput('update-existing')
             };
             core.debug(`Inputs: ${util_1.inspect(inputs)}`);
             const [owner, repo] = inputs.repository.split('/');
@@ -77,15 +78,52 @@ function run() {
                         return inputs.issueNumber;
                     }
                     else {
-                        // Create an issue
-                        const { data: issue } = yield octokit.rest.issues.create({
-                            owner: owner,
-                            repo: repo,
-                            title: inputs.title,
-                            body: fileContent
-                        });
-                        core.info(`Created issue #${issue.number}`);
-                        return issue.number;
+                        // Check if issue with same title exists
+                        let existingIssue;
+                        if (inputs.updateExisting) {
+                            core.info(`Fetching issues with title "${inputs.title}"`);
+                            try {
+                                const existingIssues = yield octokit.rest.search.issuesAndPullRequests({
+                                    q: `${inputs.title} in:title repo:${inputs.repository} is:issue is:open`
+                                });
+                                existingIssue = existingIssues.data.items.find(issue => issue.title === inputs.title);
+                            }
+                            catch (err) {
+                                core.error("Failed to search issues");
+                                core.setFailed(err);
+                            }
+                            if (existingIssue) {
+                                try {
+                                    yield octokit.rest.issues.update({
+                                        owner,
+                                        repo,
+                                        issue_number: existingIssue.number,
+                                        body: fileContent
+                                    });
+                                    core.info(`Updated issue #${existingIssue.number}`);
+                                }
+                                catch (err) {
+                                    core.error("Failed to update issue #" + existingIssue.number);
+                                    core.setFailed(err);
+                                }
+                            }
+                            else {
+                                core.info(`Existing issue of title ${inputs.title} not found`);
+                            }
+                        }
+                        if (!existingIssue || !inputs.updateExisting) {
+                            const { data: issue } = yield octokit.rest.issues.create({
+                                owner: owner,
+                                repo: repo,
+                                title: inputs.title,
+                                body: fileContent
+                            });
+                            core.info(`Created issue #${issue.number}`);
+                            return issue.number;
+                        }
+                        else {
+                            return existingIssue.number;
+                        }
                     }
                 }))();
                 // Apply labels

@@ -7,6 +7,10 @@ inputs:
   repository:
     description: 'The target GitHub repository'
     default: ${{ github.repository }}
+  update-existing:
+    description: 'Update an open existing issue with the same title if it exists'
+    required: false
+    default: false
   issue-number:
     description: 'The issue number of an existing issue to update'
   title:
