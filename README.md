@@ -52,7 +52,7 @@ To create a project card for the issue, pass the `issue-number` step output to [
           content-filepath: ./example-content/output.md
 
       - name: Create or Update Project Card
-        uses: peter-evans/create-or-update-project-card@v1
+        uses: peter-evans/create-or-update-project-card@v2
         with:
           project-name: My project
           column-name: My column
