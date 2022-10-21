@@ -117,7 +117,7 @@ function run() {
         }
         catch (error) {
             core.debug((0, util_1.inspect)(error));
-            core.setFailed(error.message);
+            core.setFailed(utils.getErrorMessage(error));
         }
     });
 }
@@ -151,7 +151,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.getStringAsArray = exports.getInputAsArray = void 0;
+exports.getErrorMessage = exports.getStringAsArray = exports.getInputAsArray = void 0;
 const core = __importStar(__nccwpck_require__(2186));
 function getInputAsArray(name, options) {
     return getStringAsArray(core.getInput(name, options));
@@ -164,6 +164,12 @@ function getStringAsArray(str) {
         .filter(x => x !== '');
 }
 exports.getStringAsArray = getStringAsArray;
+function getErrorMessage(error) {
+    if (error instanceof Error)
+        return error.message;
+    return String(error);
+}
+exports.getErrorMessage = getErrorMessage;
 
 
 /***/ }),

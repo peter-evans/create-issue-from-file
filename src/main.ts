@@ -81,9 +81,9 @@ async function run(): Promise<void> {
     } else {
       core.info(`File not found at path '${inputs.contentFilepath}'`)
     }
-  } catch (error: any) {
+  } catch (error) {
     core.debug(inspect(error))
-    core.setFailed(error.message)
+    core.setFailed(utils.getErrorMessage(error))
   }
 }
 
