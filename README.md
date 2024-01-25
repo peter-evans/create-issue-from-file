@@ -14,7 +14,7 @@ If the file does not exist the action exits silently.
 
 ```yml
       - name: Create Issue From File
-        uses: peter-evans/create-issue-from-file@v4
+        uses: peter-evans/create-issue-from-file@v5
         with:
           title: An example issue
           content-filepath: ./example-content/output.md
@@ -46,7 +46,7 @@ To create a project card for the issue, pass the `issue-number` step output to [
 ```yml
       - name: Create Issue From File
         id: ciff
-        uses: peter-evans/create-issue-from-file@v4
+        uses: peter-evans/create-issue-from-file@v5
         with:
           title: An example issue
           content-filepath: ./example-content/output.md

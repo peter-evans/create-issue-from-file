@@ -22,7 +22,7 @@ outputs:
   issue-number:
     description: 'The number of the created issue'
 runs:
-  using: 'node16'
+  using: 'node20'
   main: 'dist/index.js'
 branding:
   icon: 'alert-circle'
