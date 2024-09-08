@@ -61,7 +61,7 @@ To create a project card for the issue, pass the `issue-number` step output to [
 
 ## Actions that pair with this action
 
-- [Link Checker](https://github.com/peter-evans/link-checker) - An action for link checking repository Markdown and HTML files
+- [Link Checker](https://github.com/lycheeverse/lychee-action) - An action for link checking repository Markdown, HTML, and text files
 
 ## License
 
