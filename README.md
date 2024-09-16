@@ -27,13 +27,13 @@ If the file does not exist the action exits silently.
 
 | Name | Description | Default |
 | --- | --- | --- |
-| `token` | `GITHUB_TOKEN` or a `repo` scoped [PAT](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token). | `GITHUB_TOKEN` |
-| `repository` | The target GitHub repository. | Current repository |
-| `issue-number` | The issue number of an existing issue to update. | |
-| `title` | (**required**) The title of the issue. | |
-| `content-filepath` | The file path to the issue content. | |
-| `labels` | A comma or newline-separated list of labels. | |
-| `assignees` | A comma or newline-separated list of assignees (GitHub usernames). | |
+| `token` | `GITHUB_TOKEN` or a `repo` scoped [PAT](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token) | `GITHUB_TOKEN` |
+| `repository` | The target GitHub repository | Current repository |
+| `issue-number` | The issue number of an existing issue to update | |
+| `title` | (**required**) The title of the issue | |
+| `content-filepath` | The file path to the issue content | |
+| `labels` | A comma or newline-separated list of labels | |
+| `assignees` | A comma or newline-separated list of assignees (GitHub usernames) | |
 
 ### Outputs
 
