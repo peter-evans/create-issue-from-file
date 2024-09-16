@@ -39,30 +39,6 @@ If the file does not exist the action exits silently.
 
 - `issue-number` - The number of the created issue
 
-### Create a project card
-
-To create a project card for the issue, pass the `issue-number` step output to [create-or-update-project-card](https://github.com/peter-evans/create-or-update-project-card) action.
-
-```yml
-      - name: Create Issue From File
-        id: ciff
-        uses: peter-evans/create-issue-from-file@v5
-        with:
-          title: An example issue
-          content-filepath: ./example-content/output.md
-
-      - name: Create or Update Project Card
-        uses: peter-evans/create-or-update-project-card@v2
-        with:
-          project-name: My project
-          column-name: My column
-          issue-number: ${{ steps.ciff.outputs.issue-number }}
-```
-
-## Actions that pair with this action
-
-- [Link Checker](https://github.com/lycheeverse/lychee-action) - An action for link checking repository Markdown, HTML, and text files
-
 ## License
 
 MIT License - see the [LICENSE](LICENSE) file for details
