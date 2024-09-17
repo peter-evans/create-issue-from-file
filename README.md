@@ -31,7 +31,7 @@ If the file does not exist the action exits silently.
 | `repository` | The target GitHub repository | Current repository |
 | `issue-number` | The issue number of an existing issue to update | |
 | `title` | (**required**) The title of the issue | |
-| `content-filepath` | (**required**) The file path to the issue content | |
+| `content-filepath` | The file path to the issue content | |
 | `labels` | A comma or newline-separated list of labels | |
 | `assignees` | A comma or newline-separated list of assignees (GitHub usernames) | |
 
