@@ -14,7 +14,6 @@ inputs:
     required: true
   content-filepath:
     description: 'The file path to the issue content'
-    required: true
   labels:
     description: 'A comma or newline-separated list of labels'
   assignees:
