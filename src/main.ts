@@ -5,6 +5,16 @@ import * as util from 'util'
 import * as utils from './utils'
 import {inspect} from 'util'
 
+function truncateBody(body: string) {
+  // 65536 characters is the maximum allowed for issues.
+  const truncateWarning = '...*[Issue body truncated]*'
+  if (body.length > 65536) {
+    core.warning(`Issue body is too long. Truncating to 65536 characters.`)
+    return body.substring(0, 65536 - truncateWarning.length) + truncateWarning
+  }
+  return body
+}
+
 async function run(): Promise<void> {
   try {
     const inputs = {
@@ -26,9 +36,11 @@ async function run(): Promise<void> {
     // Check the file exists
     if (await util.promisify(fs.exists)(inputs.contentFilepath)) {
       // Fetch the file content
-      const fileContent = await fs.promises.readFile(inputs.contentFilepath, {
+      let fileContent = await fs.promises.readFile(inputs.contentFilepath, {
         encoding: 'utf8'
       })
+
+      fileContent = truncateBody(fileContent)
 
       const issueNumber = await (async (): Promise<number> => {
         if (inputs.issueNumber) {

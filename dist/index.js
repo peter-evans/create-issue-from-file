@@ -45,6 +45,15 @@ const fs = __importStar(__nccwpck_require__(7147));
 const util = __importStar(__nccwpck_require__(3837));
 const utils = __importStar(__nccwpck_require__(918));
 const util_1 = __nccwpck_require__(3837);
+function truncateBody(body) {
+    // 65536 characters is the maximum allowed for issues.
+    const truncateWarning = '...*[Issue body truncated]*';
+    if (body.length > 65536) {
+        core.warning(`Issue body is too long. Truncating to 65536 characters.`);
+        return body.substring(0, 65536 - truncateWarning.length) + truncateWarning;
+    }
+    return body;
+}
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -64,9 +73,10 @@ function run() {
             // Check the file exists
             if (yield util.promisify(fs.exists)(inputs.contentFilepath)) {
                 // Fetch the file content
-                const fileContent = yield fs.promises.readFile(inputs.contentFilepath, {
+                let fileContent = yield fs.promises.readFile(inputs.contentFilepath, {
                     encoding: 'utf8'
                 });
+                fileContent = truncateBody(fileContent);
                 const issueNumber = yield (() => __awaiter(this, void 0, void 0, function* () {
                     if (inputs.issueNumber) {
                         // Update an existing issue
