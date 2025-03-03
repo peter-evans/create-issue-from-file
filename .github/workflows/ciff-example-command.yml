@@ -33,7 +33,7 @@ jobs:
           labels: |
             report
             automated issue
-          assignees: peter-evans
+          assignees: retepsnave
 
       # Test update
       - name: Create Issue From File
@@ -45,7 +45,7 @@ jobs:
           labels: |
             report
             automated issue
-          assignees: peter-evans
+          assignees: retepsnave
 
       - name: Add reaction
         uses: peter-evans/create-or-update-comment@v4
