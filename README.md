@@ -14,7 +14,7 @@ If the file does not exist the action exits silently.
 
 ```yml
       - name: Create Issue From File
-        uses: peter-evans/create-issue-from-file@v5
+        uses: peter-evans/create-issue-from-file@v6
         with:
           title: An example issue
           content-filepath: ./example-content/output.md
