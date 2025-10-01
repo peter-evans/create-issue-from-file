@@ -1,9 +1,12 @@
 {
   "name": "create-issue-from-file",
-  "version": "5.0.0",
+  "version": "6.0.0",
   "private": true,
   "description": "An action to create an issue using content from a file",
   "main": "lib/main.js",
+  "engines": {
+    "node": ">=24.4.0"
+  },
   "scripts": {
     "build": "tsc && ncc build",
     "format": "prettier --write '**/*.ts'",
@@ -33,9 +36,11 @@
   "devDependencies": {
     "@types/jest": "^27.0.3",
     "@types/node": "^18.19.127",
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
     "@vercel/ncc": "^0.38.4",
     "eslint": "^8.57.1",
+    "eslint-import-resolver-typescript": "^3.10.1",
     "eslint-plugin-github": "^4.10.2",
     "eslint-plugin-jest": "^27.9.0",
     "eslint-plugin-prettier": "^5.5.4",
